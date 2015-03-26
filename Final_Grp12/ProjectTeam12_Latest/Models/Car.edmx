@@ -1,0 +1,234 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="CarModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CarDetails">
+          <Key>
+            <PropertyRef Name="CarId" />
+          </Key>
+          <Property Name="CarId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ListPrice" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="DiscountPercentage" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="CostPrice" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="ListingDate" Type="datetime" Nullable="false" />
+          <Property Name="SellPrice" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="SellDate" Type="datetime" />
+          <Property Name="ModelNumber" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="CustomerName" Type="varchar" MaxLength="40" />
+          <Property Name="EngineType" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="SittingCapacity" Type="int" Nullable="false" />
+          <Property Name="Performance" Type="int" Nullable="false" />
+          <Property Name="ABS" Type="bit" Nullable="false" />
+          <Property Name="CompanyId" Type="int" Nullable="false" />
+          <Property Name="UsageId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CarType">
+          <Key>
+            <PropertyRef Name="UsageId" />
+          </Key>
+          <Property Name="UsageType" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="UsageId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CompanyDetails">
+          <Key>
+            <PropertyRef Name="CompanyId" />
+          </Key>
+          <Property Name="CompanyId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CompanyName" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="HeadQuartersAt" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="NoOFEmployees" Type="int" Nullable="false" />
+          <Property Name="SetUpYear" Type="datetime" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_CarDetails_ToTable">
+          <End Role="CompanyDetails" Type="Self.CompanyDetails" Multiplicity="1" />
+          <End Role="CarDetails" Type="Self.CarDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CompanyDetails">
+              <PropertyRef Name="CompanyId" />
+            </Principal>
+            <Dependent Role="CarDetails">
+              <PropertyRef Name="CompanyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CarDetails_ToTable_1">
+          <End Role="CarType" Type="Self.CarType" Multiplicity="1" />
+          <End Role="CarDetails" Type="Self.CarDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CarType">
+              <PropertyRef Name="UsageId" />
+            </Principal>
+            <Dependent Role="CarDetails">
+              <PropertyRef Name="UsageId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CarModelStoreContainer">
+          <EntitySet Name="CarDetails" EntityType="Self.CarDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CarType" EntityType="Self.CarType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CompanyDetails" EntityType="Self.CompanyDetails" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_CarDetails_ToTable" Association="Self.FK_CarDetails_ToTable">
+            <End Role="CompanyDetails" EntitySet="CompanyDetails" />
+            <End Role="CarDetails" EntitySet="CarDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CarDetails_ToTable_1" Association="Self.FK_CarDetails_ToTable_1">
+            <End Role="CarType" EntitySet="CarType" />
+            <End Role="CarDetails" EntitySet="CarDetails" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CarModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="CarDetail">
+          <Key>
+            <PropertyRef Name="CarId" />
+          </Key>
+          <Property Name="CarId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ListPrice" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="DiscountPercentage" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="CostPrice" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="ListingDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="SellPrice" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="SellDate" Type="DateTime" Precision="3" />
+          <Property Name="ModelNumber" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CustomerName" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="EngineType" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SittingCapacity" Type="Int32" Nullable="false" />
+          <Property Name="Performance" Type="Int32" Nullable="false" />
+          <Property Name="ABS" Type="Boolean" Nullable="false" />
+          <Property Name="CompanyId" Type="Int32" Nullable="false" />
+          <Property Name="UsageId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="CompanyDetail" Relationship="Self.FK_CarDetails_ToTable" FromRole="CarDetails" ToRole="CompanyDetails" />
+          <NavigationProperty Name="CarType" Relationship="Self.FK_CarDetails_ToTable_1" FromRole="CarDetails" ToRole="CarType" />
+        </EntityType>
+        <EntityType Name="CarType">
+          <Key>
+            <PropertyRef Name="UsageId" />
+          </Key>
+          <Property Name="UsageType" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="UsageId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="CarDetails" Relationship="Self.FK_CarDetails_ToTable_1" FromRole="CarType" ToRole="CarDetails" />
+        </EntityType>
+        <EntityType Name="CompanyDetail">
+          <Key>
+            <PropertyRef Name="CompanyId" />
+          </Key>
+          <Property Name="CompanyId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CompanyName" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="HeadQuartersAt" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NoOFEmployees" Type="Int32" Nullable="false" />
+          <Property Name="SetUpYear" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="CarDetails" Relationship="Self.FK_CarDetails_ToTable" FromRole="CompanyDetails" ToRole="CarDetails" />
+        </EntityType>
+        <Association Name="FK_CarDetails_ToTable">
+          <End Role="CompanyDetails" Type="Self.CompanyDetail" Multiplicity="1" />
+          <End Role="CarDetails" Type="Self.CarDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CompanyDetails">
+              <PropertyRef Name="CompanyId" />
+            </Principal>
+            <Dependent Role="CarDetails">
+              <PropertyRef Name="CompanyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CarDetails_ToTable_1">
+          <End Role="CarType" Type="Self.CarType" Multiplicity="1" />
+          <End Role="CarDetails" Type="Self.CarDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CarType">
+              <PropertyRef Name="UsageId" />
+            </Principal>
+            <Dependent Role="CarDetails">
+              <PropertyRef Name="UsageId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CarEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CarDetails" EntityType="Self.CarDetail" />
+          <EntitySet Name="CarTypes" EntityType="Self.CarType" />
+          <EntitySet Name="CompanyDetails" EntityType="Self.CompanyDetail" />
+          <AssociationSet Name="FK_CarDetails_ToTable" Association="Self.FK_CarDetails_ToTable">
+            <End Role="CompanyDetails" EntitySet="CompanyDetails" />
+            <End Role="CarDetails" EntitySet="CarDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CarDetails_ToTable_1" Association="Self.FK_CarDetails_ToTable_1">
+            <End Role="CarType" EntitySet="CarTypes" />
+            <End Role="CarDetails" EntitySet="CarDetails" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CarModelStoreContainer" CdmEntityContainer="CarEntities">
+          <EntitySetMapping Name="CarDetails">
+            <EntityTypeMapping TypeName="CarModel.CarDetail">
+              <MappingFragment StoreEntitySet="CarDetails">
+                <ScalarProperty Name="CarId" ColumnName="CarId" />
+                <ScalarProperty Name="ListPrice" ColumnName="ListPrice" />
+                <ScalarProperty Name="DiscountPercentage" ColumnName="DiscountPercentage" />
+                <ScalarProperty Name="CostPrice" ColumnName="CostPrice" />
+                <ScalarProperty Name="ListingDate" ColumnName="ListingDate" />
+                <ScalarProperty Name="SellPrice" ColumnName="SellPrice" />
+                <ScalarProperty Name="SellDate" ColumnName="SellDate" />
+                <ScalarProperty Name="ModelNumber" ColumnName="ModelNumber" />
+                <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+                <ScalarProperty Name="EngineType" ColumnName="EngineType" />
+                <ScalarProperty Name="SittingCapacity" ColumnName="SittingCapacity" />
+                <ScalarProperty Name="Performance" ColumnName="Performance" />
+                <ScalarProperty Name="ABS" ColumnName="ABS" />
+                <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
+                <ScalarProperty Name="UsageId" ColumnName="UsageId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CarTypes">
+            <EntityTypeMapping TypeName="CarModel.CarType">
+              <MappingFragment StoreEntitySet="CarType">
+                <ScalarProperty Name="UsageType" ColumnName="UsageType" />
+                <ScalarProperty Name="UsageId" ColumnName="UsageId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CompanyDetails">
+            <EntityTypeMapping TypeName="CarModel.CompanyDetail">
+              <MappingFragment StoreEntitySet="CompanyDetails">
+                <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="HeadQuartersAt" ColumnName="HeadQuartersAt" />
+                <ScalarProperty Name="NoOFEmployees" ColumnName="NoOFEmployees" />
+                <ScalarProperty Name="SetUpYear" ColumnName="SetUpYear" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

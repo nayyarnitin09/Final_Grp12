@@ -1,0 +1,130 @@
+﻿@model ProjectTeam12_Latest.Models.CarDetail
+
+@{
+    ViewBag.Title = "Details";
+}
+
+
+
+<div>
+    <h4>CarDetail</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ListPrice)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ListPrice)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DiscountPercentage)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DiscountPercentage)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CostPrice)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CostPrice)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ListingDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ListingDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SellPrice)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SellPrice)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SellDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SellDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ModelNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ModelNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CustomerName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CustomerName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EngineType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EngineType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SittingCapacity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SittingCapacity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Performance)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Performance)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ABS)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ABS)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CompanyDetail.CompanyName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CompanyDetail.CompanyName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CarType.UsageType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CarType.UsageType)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.CarId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

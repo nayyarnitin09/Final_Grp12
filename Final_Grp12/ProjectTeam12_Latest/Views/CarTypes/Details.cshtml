@@ -1,0 +1,26 @@
+﻿@model ProjectTeam12_Latest.Models.CarType
+
+@{
+    ViewBag.Title = "Details";
+}
+
+
+
+<div>
+    <h4>CarTypes</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.UsageType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UsageType)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.UsageId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

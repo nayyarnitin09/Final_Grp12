@@ -1,0 +1,166 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Car Inventory</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+           
+            $('input[id=ListingDate]').attr("disabled", "disabled");
+           
+        });
+
+        $(document).ready(function () {
+            $('a[id=crossOvers]').mouseenter(function () {
+                $('.firstImage img').replaceWith('<img id="co1" src="/Images/Crossover1.png" />');
+                $('.secondImage img').replaceWith('<img id="co2" src="/Images/CrossOver2.jpg" />');
+                $('.thirdImage img').replaceWith('<img id="co3" src="/Images/crossover3.png" />');
+            });
+            
+            $('a[id=sports]').mouseenter(function () {
+                $('.firstImage img').replaceWith('<img id="sports1" src="/Images/sports1.png" />');
+                $('.secondImage img').replaceWith('<img id="sports2" src="/Images/sports2.png" />');
+                $('.thirdImage img').replaceWith('<img id="sports3" src="/Images/sports3.png" />');
+
+            });
+         
+            $('a[id=cars]').mouseenter(function () {
+                $('.firstImage img').replaceWith('<img id="car1" src="/Images/Car1.png" />');
+                $('.secondImage img').replaceWith('<img id="car2" src="/Images/car2.png" />');
+                $('.thirdImage img').replaceWith('<img id="car3" src="/Images/car3.png" />');
+            });
+
+            $('a[id=truck]').mouseenter(function () {
+                $('.firstImage img').replaceWith('<img id="truck1" src="/Images/truck1.png" />');
+                $('.secondImage img').replaceWith('<img id="truck2" src="/Images/truck2.png" />');
+                $('.thirdImage img').replaceWith('<img id="truck3" src="/Images/truck3.png" />');
+            });
+
+            $('.info').hide();
+
+            $('.firstImage').delegate("img#truck1", "mouseenter", function () {
+                $('.info').hide();
+                $('.info').show();
+                $('.info #Name p').html("Colorado");
+                $('.info #Price p').html('$23,200');
+            });
+
+            $('.secondImage').delegate("img#truck2", "mouseenter", function () {
+                $('.info').hide();
+                $('.info').show();
+                $('.info #Name p').html("Silverado");
+                $('.info #Price p').html('$34,345');
+            });
+
+            $('.thirdImage').delegate("img#truck3", "mouseenter", function () {
+                $('.info').hide();
+                $('.info').show();
+                $('.info #Name p').html("CityExpress");
+                $('.info #Price p').html('$20,000');
+            });
+
+            $('.firstImage').delegate("img#car1", "mouseenter", function () {
+                $('.info').hide();
+                $('.info').show();
+                $('.info #Name p').html("Impala");
+                $('.info #Price p').html("$23,250");
+            });
+
+            $('.secondImage').delegate("img#car2", "mouseenter", function () {
+                $('.info').hide();
+                $('.info').show();
+                $('.info #Name p').html("Volt");
+                $('.info #Price p').html("$34,350");
+            });
+
+
+            $('.thirdImage').delegate("img#car3", "mouseenter", function () {
+                $('.info').hide();
+                $('.info').show();
+                $('.info #Name p').html("Malibu");
+                $('.info #Price p').html("$22,465");
+            });
+
+            $('.firstImage').delegate("img#sports1", "mouseenter", function () {
+                $('.info').hide();
+                $('.info').show();
+                $('.info #Name p').html("SS");
+                $('.info #Price p').html('$43,475');
+            });
+
+            $('.secondImage').delegate("img#sports2", "mouseenter", function () {
+                $('.info').hide();
+                $('.info').show();
+                $('.info #Name p').html("Camaro");
+                $('.info #Price p').html('$27,250');
+            });
+
+            $('.thirdImage').delegate("img#sports3", "mouseenter", function () {
+                $('.info').hide();
+                $('.info').show();
+                $('.info #Name p').html("Corvette");
+                $('.info #Price p').html('$53,400');
+            });
+
+            $('.firstImage').delegate("img#co1", "mouseenter", function () {
+                $('.info').hide();
+                $('.info').show();
+                $('.info #Name p').html("SubUrban");
+                $('.info #Price p').html('$47,450');
+            });
+
+            $('.secondImage').delegate("img#co2", "mouseenter", function () {
+                $('.info').hide();
+                $('.info').show();
+                $('.info #Name p').html("Tahoe");
+                $('.info #Price p').html('$44,450');
+            });
+
+            $('.thirdImage').delegate("img#co3", "mouseenter", function () {
+                $('.info').hide();
+                $('.info').show();
+                $('.info #Name p').html("Equinox");
+                $('.info #Price p').html('$34,000');
+            });
+        });
+
+
+    </script>
+</head>
+<body>
+    <div style="background-color:lightgray">
+        
+        <div class="inlineDiv" style="">
+            <img src="~/Images/Header.jpg" style="height:80% ; width:25%" />
+        </div>
+        <div class="inlineDiv" style="float:left;">
+            <ul class="nav navbar-nav">
+                <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                <li>@Html.ActionLink("Inventory", "Index", "CarDetails")</li>
+                <li>@Html.ActionLink("Company", "Index", "CompanyDetails")</li>
+                <li>@Html.ActionLink("Types", "Index", "CarTypes")</li>
+            </ul>
+           
+        </div>
+        <div class="inlineDiv" style="float:right;">
+            @Html.Partial("_LoginPartial")
+        </div>
+    </div>
+    
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

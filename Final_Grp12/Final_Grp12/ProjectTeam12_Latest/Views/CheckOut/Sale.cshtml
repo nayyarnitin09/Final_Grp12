@@ -1,0 +1,100 @@
+﻿@model  ProjectTeam12_Latest.Models.CarDetail
+
+@{
+    
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Sale</title>
+</head>
+<body>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+   
+    <form method="post">
+       
+        @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true);
+           <div>
+               @Html.HiddenFor(x=>x.CarId)
+           </div>
+           <div>
+                @Html.HiddenFor(x => x.ListPrice)
+           </div>
+            <div>
+                @Html.HiddenFor(x => x.DiscountPercentage)
+            </div>
+            <div>
+                @Html.HiddenFor(x => x.CostPrice)
+            </div>
+            <div>
+                @Html.HiddenFor(x => x.ListingDate)
+            </div>
+            <div>
+                @Html.HiddenFor(x => x.ModelNumber)
+            </div>
+            <div>
+                @Html.HiddenFor(x => x.EngineType)
+            </div>
+            <div>
+                @Html.HiddenFor(x => x.SittingCapacity)
+            </div>
+            <div>
+                @Html.HiddenFor(x => x.Performance)
+            </div>
+            <div>
+                @Html.HiddenFor(x => x.ABS)
+            </div>
+            <div>
+                @Html.HiddenFor(x => x.CompanyId)
+            </div>
+            <div>
+                @Html.HiddenFor(x => x.UsageId)
+            </div>
+            <div style="width:100%;">
+                <table>
+                    <tr class="header">
+                        <td class="firstmember">ModelName</td>
+                        <td>
+                            @Html.Label(Model.ModelNumber)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="firstmember">ListingYear</td>
+                        <td>
+                            @Model.ListingDate.Year
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="firstmember">EngineType</td>
+                        <td>
+                            @Html.Label(Model.EngineType)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="firstmember">CustomerName</td>
+                        <td>@Html.EditorFor(x=>x.CustomerName) </td>
+                        <td class="errormssg">@Html.ValidationMessageFor(x=>x.CustomerName)</td>
+                    </tr>
+                    <tr>
+                        <td class="firstmember">SalePrice</td>
+                        <td>@Html.EditorFor(x=>x.SellPrice) </td>
+                        <td class="errormssg">@Html.ValidationMessageFor(x => x.SellPrice)</td>
+                    </tr>
+                    <tr>
+                        <td class="firstmember">SellDate</td>
+                        <td>@Html.EditorFor(x=>x.SellDate) </td>
+                        <td class="errormssg">@Html.ValidationMessageFor(x => x.SellDate)</td>
+                    </tr>
+                </table>
+            </div>
+<div style="height:10px;"></div>
+            <input type="submit" value="Update" />
+
+</form>
+</body>
+</html>

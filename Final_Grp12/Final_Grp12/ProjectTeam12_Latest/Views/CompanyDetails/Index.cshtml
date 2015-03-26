@@ -1,0 +1,65 @@
+﻿@model IEnumerable<ProjectTeam12_Latest.Models.CompanyDetail>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+
+<div style="height:50px;">
+
+</div>
+<div>
+    <div style="display:inline-block;">
+        <h4>Company Details</h4>
+    </div>
+    <div style="display:inline-block;float:right;">
+        <h4> @Html.ActionLink("Add New Company", "Create")</h4>
+    </div>
+</div>
+<div style="height:20px;">
+
+</div>
+<div>
+    <table class="index">
+        <tr class="header">
+            <td>
+                @Html.DisplayNameFor(model => model.CompanyName)
+            </td>
+            <td>
+                @Html.DisplayNameFor(model => model.HeadQuartersAt)
+            </td>
+            <td>
+                @Html.DisplayNameFor(model => model.NoOFEmployees)
+            </td>
+            <td>
+                @Html.DisplayNameFor(model => model.SetUpYear)
+            </td>
+            <td>Modify</td>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CompanyName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.HeadQuartersAt)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NoOFEmployees)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SetUpYear)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.CompanyId }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.CompanyId }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.CompanyId })
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>

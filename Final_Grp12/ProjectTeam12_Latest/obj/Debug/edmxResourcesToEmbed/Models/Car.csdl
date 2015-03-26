@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CarModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="CarDetail">
+    <Key>
+      <PropertyRef Name="CarId" />
+    </Key>
+    <Property Name="CarId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ListPrice" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="DiscountPercentage" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="CostPrice" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="ListingDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="SellPrice" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="SellDate" Type="DateTime" Precision="3" />
+    <Property Name="ModelNumber" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CustomerName" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Name="EngineType" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="SittingCapacity" Type="Int32" Nullable="false" />
+    <Property Name="Performance" Type="Int32" Nullable="false" />
+    <Property Name="ABS" Type="Boolean" Nullable="false" />
+    <Property Name="CompanyId" Type="Int32" Nullable="false" />
+    <Property Name="UsageId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="CompanyDetail" Relationship="Self.FK_CarDetails_ToTable" FromRole="CarDetails" ToRole="CompanyDetails" />
+    <NavigationProperty Name="CarType" Relationship="Self.FK_CarDetails_ToTable_1" FromRole="CarDetails" ToRole="CarType" />
+  </EntityType>
+  <EntityType Name="CarType">
+    <Key>
+      <PropertyRef Name="UsageId" />
+    </Key>
+    <Property Name="UsageType" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="UsageId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <NavigationProperty Name="CarDetails" Relationship="Self.FK_CarDetails_ToTable_1" FromRole="CarType" ToRole="CarDetails" />
+  </EntityType>
+  <EntityType Name="CompanyDetail">
+    <Key>
+      <PropertyRef Name="CompanyId" />
+    </Key>
+    <Property Name="CompanyId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CompanyName" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="HeadQuartersAt" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="NoOFEmployees" Type="Int32" Nullable="false" />
+    <Property Name="SetUpYear" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="CarDetails" Relationship="Self.FK_CarDetails_ToTable" FromRole="CompanyDetails" ToRole="CarDetails" />
+  </EntityType>
+  <Association Name="FK_CarDetails_ToTable">
+    <End Role="CompanyDetails" Type="Self.CompanyDetail" Multiplicity="1" />
+    <End Role="CarDetails" Type="Self.CarDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CompanyDetails">
+        <PropertyRef Name="CompanyId" />
+      </Principal>
+      <Dependent Role="CarDetails">
+        <PropertyRef Name="CompanyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CarDetails_ToTable_1">
+    <End Role="CarType" Type="Self.CarType" Multiplicity="1" />
+    <End Role="CarDetails" Type="Self.CarDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CarType">
+        <PropertyRef Name="UsageId" />
+      </Principal>
+      <Dependent Role="CarDetails">
+        <PropertyRef Name="UsageId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="CarEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="CarDetails" EntityType="Self.CarDetail" />
+    <EntitySet Name="CarTypes" EntityType="Self.CarType" />
+    <EntitySet Name="CompanyDetails" EntityType="Self.CompanyDetail" />
+    <AssociationSet Name="FK_CarDetails_ToTable" Association="Self.FK_CarDetails_ToTable">
+      <End Role="CompanyDetails" EntitySet="CompanyDetails" />
+      <End Role="CarDetails" EntitySet="CarDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CarDetails_ToTable_1" Association="Self.FK_CarDetails_ToTable_1">
+      <End Role="CarType" EntitySet="CarTypes" />
+      <End Role="CarDetails" EntitySet="CarDetails" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

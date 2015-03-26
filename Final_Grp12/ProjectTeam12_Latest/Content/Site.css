@@ -1,0 +1,68 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+.soldLink{
+    background-color:red;
+}
+.inlineDiv{
+    display:inline-block;
+}
+.inlineDiv ul li{
+    font-weight:bold;
+}
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+.input-validation-error {
+border: 1px solid #f00;
+background-color: #fee;
+font-weight: bold;
+color: #f00;
+} 
+.validation-summary-errors {
+font-weight: bold;
+color: #f00;
+}
+
+.errormssg {
+font-weight: bold;
+color: #f00;
+}
+
+.index {
+    width:100%;
+}
+
+
+.index .header{
+    width:100%;
+    background-color:lightblue;
+    font-weight:bold;
+    text-align:center;
+}
+
+
+.firstmember {
+    font-weight:bold;
+    background-color:lightblue;
+}
+
+.index, tr, td {
+    border: 1px solid black;
+    text-align:center;
+    }
+
+  h3,h4 {
+    color:cornflowerblue;
+}
